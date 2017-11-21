@@ -27,11 +27,5 @@
             android:text="@string/app_loading"
             android:textColor="@color/blue"/>
 
-        <!--<TextView-->
-            <!--app:visible="@{!vm.loading}"-->
-            <!--android:text="@{vm.principal.nome}"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"/>-->
-
     </LinearLayout>
 </layout>
