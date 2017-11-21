@@ -1,0 +1,37 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="vm"
+            type="br.com.martinlabs.usecase.viewmodel.ListPrincipalVM" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/d20"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app"
+            android:onClick="@{v -> vm.load()}"/>
+
+        <TextView
+            app:visible="@{vm.loading}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_loading"
+            android:textColor="@color/blue"/>
+
+        <!--<TextView-->
+            <!--app:visible="@{!vm.loading}"-->
+            <!--android:text="@{vm.principal.nome}"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"/>-->
+
+    </LinearLayout>
+</layout>

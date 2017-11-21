@@ -1,0 +1,143 @@
+<resources>
+    <string name="language">en-us</string>
+    <string name="app">GeneratorUseCase</string>
+    <string name="app_loading">Loading…</string>
+    <string name="app_logout">Logout</string>
+    <string name="app_menu">Menu</string>
+    <string name="app_add">Add</string>
+    <string name="app_export">Export</string>
+    <string name="app_select">Select</string>
+    <string name="app_persistedSuccessfully">Persisted Successfully!</string>
+    <string name="app_confirmRemove">Are you sure you want to remove this item?</string>
+    <string name="app_remove">Remove</string>
+    <string name="app_cancel">Cancel</string>
+    <string name="app_passwordMustHaveAtleast6Chars">The password must have atleast 6 characters</string>
+    <string name="app_onlyIfWantChangePassword">Fill this field only if you want to change the password</string>
+    <string name="app_noDataToShow">No data to show</string>
+    <string name="app_downloadCsv">Download CSV</string>
+    <string name="app_search">Search</string>
+    <string name="app_totalLines">%s total lines</string>
+    <string name="app_version">Version</string>
+
+    <string name="dateformat_millisecond">YY/MM/DD hh:mm:ss</string>
+    <string name="dateformat_second">YY/MM/DD hh:mm:ss</string>
+    <string name="dateformat_minute">YY/MM/DD hh:mm</string>
+    <string name="dateformat_hour">YY/MM/DD hh:mm</string>
+    <string name="dateformat_day">YY/MM/DD hh:mm</string>
+    <string name="dateformat_week">YY/MM/DD</string>
+    <string name="dateformat_month">YY/MM/DD</string>
+    <string name="dateformat_quarter">YY/MM/DD</string>
+    <string name="dateformat_year">YY/MM/DD</string>
+    <string name="dateformat_date">YYYY/MM/DD</string>
+    <string name="dateformat_datetime">YYYY/MM/DD hh:mm</string>
+    <string name="dateformat_time">hh:mm</string>
+    <string name="dateformat_datemask">####/##/##</string>
+    <string name="dateformat_datetimemask">####/##/## ##:##</string>
+
+    <string name="format_cpf">###.###.###-##</string>
+    <string name="format_cnpj">##.###.###/####-##</string>
+    <string name="format_rg">##.###.###-#</string>
+    <string name="format_cep">#####-###</string>
+    <string name="format_phone">(##) #####-####</string>
+
+    <string name="validate_length_cannot_be_more_than">%s length cannot be more than %d</string>
+    <string name="validate_cannot_be_null">%s cannot be null</string>
+    <string name="validate_is_not_a_valid_email">%s is not a valid e-mail</string>
+    <string name="validate_is_not_a_valid_cpf">%s is not a valid cpf</string>
+    <string name="validate_is_not_a_valid_cnpj">%s is not a valid cnpj</string>
+
+    <string name="boolean_true">True</string>
+    <string name="boolean_false">False</string>
+
+    <string name="login">Login</string>
+    <string name="login_subtitle">Please sign in</string>
+    <string name="login_account">Account</string>
+    <string name="login_password">Password</string>
+    <string name="login_signin">Sign in</string>
+
+    <string name="home">Home</string>
+    <string name="home_subtitle">Home</string>
+
+    <string name="persist_number">Number</string>
+    <string name="persist_submit">Submit</string>
+
+    <string name="c_conectado">Conectado</string>
+    <string name="c_conectado_idConectadoPk">Id Conectado Pk</string>
+    <string name="c_conectado_titulo">Titulo</string>
+
+    <string name="c_conectorprincipal">Conector Principal</string>
+    <string name="c_conectorprincipal_conectado">Conectado</string>
+    <string name="c_conectorprincipal_principal">Principal</string>
+    <string name="c_conectorprincipal_titulo">Titulo</string>
+
+    <string name="c_endereco">Endereco</string>
+    <string name="c_endereco_idEnderecoPk">Id Endereco Pk</string>
+    <string name="c_endereco_cep">Cep</string>
+    <string name="c_endereco_zipcode">Zipcode</string>
+    <string name="c_endereco_rua">Rua</string>
+    <string name="c_endereco_nro">Nro</string>
+    <string name="c_endereco_cidade">Cidade</string>
+    <string name="c_endereco_uf">Uf</string>
+    <string name="c_endereco_latitude">Latitude</string>
+    <string name="c_endereco_longitude">Longitude</string>
+
+    <string name="c_extensaodoprincipal">Extensao Do Principal</string>
+    <string name="c_extensaodoprincipalprincipal">Principal</string>
+    <string name="c_extensaodoprincipaltitulo">Titulo</string>
+
+    <string name="c_grupodoprincipal">Grupo Do Principal</string>
+    <string name="c_grupodoprincipal_idGrupoDoPrincipalPk">Id Grupo Do Principal Pk</string>
+    <string name="c_grupodoprincipal_titulo">Titulo</string>
+
+    <string name="c_itemdoprincipal">Item Do Principal</string>
+    <string name="c_itemdoprincipal_principal">Principal</string>
+    <string name="c_itemdoprincipal_idItemDoPrincipalPk">Id Item Do Principal Pk</string>
+    <string name="c_itemdoprincipal_titulo">Titulo</string>
+
+    <string name="c_principal">Principal</string>
+    <string name="c_principal_grupoDoPrincipal">Grupo Do Principal</string>
+    <string name="c_principal_grupoDoPrincipalFacultativo">Grupo Do Principal Facultativo</string>
+    <string name="c_principal_idPrincipalPk">Id Principal Pk</string>
+    <string name="c_principal_textoObrigatorio">Texto Obrigatorio</string>
+    <string name="c_principal_textoFacultativo">Texto Facultativo</string>
+    <string name="c_principal_decimalObrigatorio">Decimal Obrigatorio</string>
+    <string name="c_principal_decimalFacultativo">Decimal Facultativo</string>
+    <string name="c_principal_inteiroObrigatorio">Inteiro Obrigatorio</string>
+    <string name="c_principal_inteiroFacultativo">Inteiro Facultativo</string>
+    <string name="c_principal_booleanoObrigatorio">Booleano Obrigatorio</string>
+    <string name="c_principal_booleanoFacultativo">Booleano Facultativo</string>
+    <string name="c_principal_dataObrigatoria">Data Obrigatoria</string>
+    <string name="c_principal_dataFacultativa">Data Facultativa</string>
+    <string name="c_principal_datahoraObrigatoria">Datahora Obrigatoria</string>
+    <string name="c_principal_datahoraFacultativa">Datahora Facultativa</string>
+    <string name="c_principal_ativo">Ativo</string>
+    <string name="c_principal_email">Email</string>
+    <string name="c_principal_senha">Senha</string>
+    <string name="c_principal_urlImagem">Url Imagem</string>
+    <string name="c_principal_url">Url</string>
+    <string name="c_principal_unico">Unico</string>
+    <string name="c_principal_dataCriacao">Data Criacao</string>
+    <string name="c_principal_dataAlteracao">Data Alteracao</string>
+    <string name="c_principal_nome">Nome</string>
+    <string name="c_principal_titulo">Titulo</string>
+    <string name="c_principal_cpf">Cpf</string>
+    <string name="c_principal_cnpj">Cnpj</string>
+    <string name="c_principal_rg">Rg</string>
+    <string name="c_principal_celular">Celular</string>
+    <string name="c_principal_textoGrande">Texto Grande</string>
+
+    <string name="c_tag">Tag</string>
+    <string name="c_tag_idTagPk">Id Tag Pk</string>
+    <string name="c_tag_titulo">Titulo</string>
+
+    <string name="c_tagprincipal">Tag Principal</string>
+    <string name="c_tagprincipal_tag">Tag</string>
+    <string name="c_tagprincipal_principal">Principal</string>
+
+    <string name="c_user">User</string>
+    <string name="c_user_idUserPk">Id User Pk</string>
+    <string name="c_user_email">Email</string>
+    <string name="c_user_senha">Senha</string>
+    <string name="version">a1.0.0</string>
+    <string name="unexpected_error">Unexpected Error</string>
+</resources>
