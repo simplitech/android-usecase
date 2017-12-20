@@ -2,30 +2,54 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.view.View"/>
+        <import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
+
         <variable
             name="vm"
             type="br.com.martinlabs.usecase.viewmodel.ListPrincipalVM" />
     </data>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/d20"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:layout_height="match_parent">
 
-        <Button
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!--<android.support.v4.widget.SwipeRefreshLayout-->
+            <!--android:id="@+id/swipeRefreshLayout"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:visibility="@{vm.items.size() > 0 ? View.VISIBLE : View.GONE}">-->
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="@{LayoutManagers.linear()}"
+                app:items="@{vm.listPrincipal}"
+                app:itemBinding="@{vm.itemPrincipalBinding}"/>
+
+            <!--</android.support.v4.widget.SwipeRefreshLayout>-->
+
+            <!--<TextView-->
+            <!--android:visibility="@{vm.items.size() == 0 ? View.VISIBLE : View.GONE}"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:gravity="center"-->
+            <!--android:text="@string/app_noDataToShow"/>-->
+
+        </LinearLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:onClick="@{(v) -> vm.newPrincipal()}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/app"
-            android:onClick="@{v -> vm.load()}"/>
-
-        <TextView
-            app:visible="@{vm.loading}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/app_loading"
-            android:textColor="@color/blue"/>
-
-    </LinearLayout>
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/d20"
+            app:srcCompat="@drawable/ic_add_black_24dp"
+            android:tint="@android:color/white"/>
+    </FrameLayout>
 </layout>

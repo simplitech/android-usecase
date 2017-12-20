@@ -11,7 +11,9 @@ class EnderecoResp : BaseObservable(), Serializable {
     @Bindable
     var endereco: Endereco? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.endereco)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.endereco)
+            }
         }
 }

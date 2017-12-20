@@ -11,7 +11,9 @@ class GrupoDoPrincipalResp : BaseObservable(), Serializable {
     @Bindable
     var grupoDoPrincipal: GrupoDoPrincipal? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.grupoDoPrincipal)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.grupoDoPrincipal)
+            }
         }
 }

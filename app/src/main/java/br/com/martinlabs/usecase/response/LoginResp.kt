@@ -10,15 +10,19 @@ class LoginResp : BaseObservable(), Serializable {
     @Bindable
     var token: String? = null
     set(value) {
-        field = value
-        notifyPropertyChanged(BR.token)
-    }
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.token)
+            }
+        }
 
     @Bindable
     var id: Long = 0
     set(value) {
-        field = value
-        notifyPropertyChanged(BR.id)
-    }
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.id)
+            }
+        }
 
 }

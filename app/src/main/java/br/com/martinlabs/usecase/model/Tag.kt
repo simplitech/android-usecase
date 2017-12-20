@@ -1,31 +1,38 @@
 package br.com.martinlabs.usecase.model
 
-import android.databinding.BaseObservable
+import br.com.martinlabs.usecase.viewtools.Watchable
 import android.databinding.Bindable
+import android.databinding.ObservableArrayList
 import br.com.martinlabs.usecase.BR
 import java.io.Serializable
 
 
-class Tag : BaseObservable(), Serializable {
+class Tag : Watchable(), Serializable {
 
     @Bindable
     var idTagPk: Long = 0
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.idTagPk)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.idTagPk)
+            }
         }
 
     @Bindable
     var titulo: String? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.titulo)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.titulo)
+            }
         }
 
     @Bindable
-    var tagPrincipal: MutableList<Principal>? = null
+    var tagPrincipal: ObservableArrayList<Principal>? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.tagPrincipal)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.tagPrincipal)
+            }
         }
 }

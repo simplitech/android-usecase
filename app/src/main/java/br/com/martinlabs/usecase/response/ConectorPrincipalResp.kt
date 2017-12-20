@@ -13,21 +13,27 @@ class ConectorPrincipalResp : BaseObservable(), Serializable {
     @Bindable
     var conectorPrincipal: ConectorPrincipal? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.conectorPrincipal)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.conectorPrincipal)
+            }
         }
 
     @Bindable
     var allConectado: MutableList<Conectado>? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.allConectado)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.allConectado)
+            }
         }
 
     @Bindable
     var allPrincipal: MutableList<Principal>? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.allPrincipal)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.allPrincipal)
+            }
         }
 }

@@ -7,27 +7,34 @@ import br.com.martinlabs.usecase.model.Principal
 import br.com.martinlabs.usecase.model.GrupoDoPrincipal
 import br.com.martinlabs.usecase.model.Tag
 import java.io.Serializable
+import java.util.*
 
 class PrincipalResp : BaseObservable(), Serializable {
 
     @Bindable
     var principal: Principal? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.principal)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.principal)
+            }
         }
 
     @Bindable
-    var allGrupoDoPrincipal: MutableList<GrupoDoPrincipal>? = null
+    var allGrupoDoPrincipal: List<GrupoDoPrincipal> = LinkedList<GrupoDoPrincipal>()
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.allGrupoDoPrincipal)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.allGrupoDoPrincipal)
+            }
         }
 
     @Bindable
-    var allTag: MutableList<Tag>? = null
+    var allTag: List<Tag> = LinkedList<Tag>()
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.allTag)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.allTag)
+            }
         }
 }

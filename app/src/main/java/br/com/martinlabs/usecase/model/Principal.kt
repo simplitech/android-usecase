@@ -1,228 +1,297 @@
 package br.com.martinlabs.usecase.model
 
-import android.databinding.BaseObservable
+import br.com.martinlabs.usecase.viewtools.Watchable
 import android.databinding.Bindable
+import android.databinding.ObservableArrayList
 import br.com.martinlabs.usecase.BR
+import br.com.martinlabs.usecase.viewtools.Converter
 import java.io.Serializable
 import java.util.*
 
 
-class Principal : BaseObservable(), Serializable {
+class Principal : Watchable(), Serializable, WithIdAndTitle {
+
+    override val id: Long?
+        get() = idPrincipalPk
+    override val title: String?
+        get() = nome
 
     @Bindable
     var grupoDoPrincipal: GrupoDoPrincipal? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.grupoDoPrincipal)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.grupoDoPrincipal)
+            }
         }
 
     @Bindable
     var grupoDoPrincipalFacultativo: GrupoDoPrincipal? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.grupoDoPrincipalFacultativo)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.grupoDoPrincipalFacultativo)
+            }
         }
 
     @Bindable
     var idPrincipalPk: Long = 0
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.idPrincipalPk)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.idPrincipalPk)
+            }
         }
 
     @Bindable
     var textoObrigatorio: String? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.textoObrigatorio)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.textoObrigatorio)
+            }
         }
 
     @Bindable
     var textoFacultativo: String? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.textoFacultativo)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.textoFacultativo)
+            }
         }
 
     @Bindable
     var decimalObrigatorio: Double = 0.0
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.decimalObrigatorio)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.decimalObrigatorio)
+            }
         }
 
     @Bindable
     var decimalFacultativo: Double? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.decimalFacultativo)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.decimalFacultativo)
+            }
         }
 
     @Bindable
     var inteiroObrigatorio: Long = 0
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.inteiroObrigatorio)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.inteiroObrigatorio)
+            }
         }
 
     @Bindable
     var inteiroFacultativo: Long? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.inteiroFacultativo)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.inteiroFacultativo)
+            }
         }
 
     @Bindable
     var booleanoObrigatorio: Boolean = false
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.booleanoObrigatorio)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.booleanoObrigatorio)
+            }
         }
 
     @Bindable
     var booleanoFacultativo: Boolean? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.booleanoFacultativo)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.booleanoFacultativo)
+            }
         }
 
     @Bindable
     var dataObrigatoria: Date? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.dataObrigatoria)
+            if (Converter.isValidDateChange(field, value)) {
+                field = value
+                notifyPropertyChanged(BR.dataObrigatoria)
+            }
         }
 
     @Bindable
     var dataFacultativa: Date? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.dataFacultativa)
+            if (Converter.isValidDateChange(field, value)) {
+                field = value
+                notifyPropertyChanged(BR.dataFacultativa)
+            }
         }
 
     @Bindable
     var datahoraObrigatoria: Date? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.datahoraObrigatoria)
+            if (Converter.isValidDateChange(field, value)) {
+                field = value
+                notifyPropertyChanged(BR.datahoraObrigatoria)
+            }
         }
 
     @Bindable
     var datahoraFacultativa: Date? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.datahoraFacultativa)
+            if (Converter.isValidDateChange(field, value)) {
+                field = value
+                notifyPropertyChanged(BR.datahoraFacultativa)
+            }
         }
 
     @Bindable
     var ativo: Boolean = false
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.ativo)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.ativo)
+            }
         }
 
     @Bindable
     var email: String? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.email)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.email)
+            }
         }
 
     @Bindable
     var senha: String? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.senha)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.senha)
+            }
         }
 
     @Bindable
     var urlImagem: String? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.urlImagem)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.urlImagem)
+            }
         }
 
     @Bindable
     var url: String? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.url)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.url)
+            }
         }
 
     @Bindable
     var unico: String? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.unico)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.unico)
+            }
         }
 
     @Bindable
     var dataCriacao: Date? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.dataCriacao)
+            if (Converter.isValidDateChange(field, value)) {
+                field = value
+                notifyPropertyChanged(BR.dataCriacao)
+            }
         }
 
     @Bindable
     var dataAlteracao: Date? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.dataAlteracao)
+            if (Converter.isValidDateChange(field, value)) {
+                field = value
+                notifyPropertyChanged(BR.dataAlteracao)
+            }
         }
 
     @Bindable
     var nome: String? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.nome)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.nome)
+            }
         }
 
     @Bindable
     var titulo: String? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.titulo)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.titulo)
+            }
         }
 
     @Bindable
     var cpf: String? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.cpf)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.cpf)
+            }
         }
 
     @Bindable
     var cnpj: String? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.cnpj)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.cnpj)
+            }
         }
 
     @Bindable
     var rg: String? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.rg)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.rg)
+            }
         }
 
     @Bindable
     var celular: String? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.celular)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.celular)
+            }
         }
 
     @Bindable
     var textoGrande: String? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.textoGrande)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.textoGrande)
+            }
         }
 
     @Bindable
-    var tagPrincipal: MutableList<Tag>? = null
+    var tagPrincipal: ObservableArrayList<Tag>? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.tagPrincipal)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.tagPrincipal)
+            }
         }
 }

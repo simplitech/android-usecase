@@ -12,14 +12,18 @@ class ExtensaoDoPrincipalResp : BaseObservable(), Serializable {
     @Bindable
     var extensaoDoPrincipal: ExtensaoDoPrincipal? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.extensaoDoPrincipal)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.extensaoDoPrincipal)
+            }
         }
 
     @Bindable
     var allPrincipal: MutableList<Principal>? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.allPrincipal)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.allPrincipal)
+            }
         }
 }

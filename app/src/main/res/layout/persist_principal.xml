@@ -1,0 +1,218 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="br.com.martinlabs.usecase.viewtools.Converter"/>
+        <import type="br.com.martinlabs.usecase.R"/>
+
+        <variable
+            name="vm"
+            type="br.com.martinlabs.usecase.viewmodel.PersistPrincipalVM" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/d15"
+            android:focusableInTouchMode="true">
+
+            <TextView
+                android:text="@string/c_principal_grupoDoPrincipal"
+                style="@style/InputLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <Spinner
+                android:selectedItemPosition="@={Converter.indexFromModel(vm.allGrupoDoPrincipal, vm.principal.grupoDoPrincipal)}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:items="@{vm.allGrupoDoPrincipal}"
+                app:itemBinding="@{vm.itemGrupoDoPrincipalBinding}"
+                app:itemDropDownLayout="@{R.layout.li_dropdown}"
+                style="@style/Widget.AppCompat.Spinner.Underlined"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/d10">
+
+                <android.support.design.widget.TextInputEditText
+                    android:text="@={vm.principal.textoObrigatorio}"
+                    android:hint="@string/c_principal_textoObrigatorio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLength="160"
+                    app:validateEmpty="@{true}"
+                    app:onBlur="@{(v, hasFocus) -> vm.validator.validate(v)}"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/d10">
+
+                <android.support.design.widget.TextInputEditText
+                    android:text="@={vm.principal.textoFacultativo}"
+                    android:hint="@string/c_principal_textoFacultativo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLength="45"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/d10">
+
+                <android.support.design.widget.TextInputEditText
+                    android:text="@={Converter.fromDoubleNotNull(vm.principal.decimalObrigatorio)}"
+                    android:hint="@string/c_principal_decimalObrigatorio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    app:validateEmpty="@{true}"
+                    app:onBlur="@{(v, hasFocus) -> vm.validator.validate(v)}"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <CheckBox
+                android:checked="@={vm.principal.booleanoObrigatorio}"
+                android:text="@string/c_principal_booleanoObrigatorio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/d10">
+
+                <android.support.design.widget.TextInputEditText
+                    android:text="@={Converter.fromDate(@string/dateformat_date, vm.principal.dataObrigatoria)}"
+                    android:hint="@{@string/c_principal_dataObrigatoria + '(' + @string/dateformat_date + ')'}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="date"
+                    android:digits="0123456789/"
+                    android:maxLength="10"
+                    app:mask="@{@string/dateformat_datemask}"
+                    app:validateDate="@{@string/dateformat_date}"
+                    app:onBlur="@{(v, hasFocus) -> vm.validator.validate(v)}"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/d10">
+
+                <android.support.design.widget.TextInputEditText
+                    android:text="@={Converter.fromDate(@string/dateformat_datetime, vm.principal.datahoraObrigatoria)}"
+                    android:hint="@{@string/c_principal_datahoraObrigatoria + '(' + @string/dateformat_datetime + ')'}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="datetime"
+                    android:digits="0123456789/ :"
+                    android:maxLength="16"
+                    app:mask="@{@string/dateformat_datetimemask}"
+                    app:validateDate="@{@string/dateformat_datetime}"
+                    app:onBlur="@{(v, hasFocus) -> vm.validator.validate(v)}"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/d10">
+
+                <android.support.design.widget.TextInputEditText
+                    android:text="@={Converter.fromCPF(vm.principal.cpf)}"
+                    android:hint="@{@string/c_principal_cpf}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:digits="0123456789.-"
+                    android:maxLength="14"
+                    app:mask="@{@string/format_cpf}"
+                    app:validateType='@{"cpf"}'
+                    app:onBlur="@{(v, hasFocus) -> vm.validator.validate(v)}"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/d10">
+
+                <android.support.design.widget.TextInputEditText
+                    android:text="@={Converter.fromCNPJ(vm.principal.cnpj)}"
+                    android:hint="@{@string/c_principal_cnpj}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:digits="0123456789.-/"
+                    android:maxLength="18"
+                    app:mask="@{@string/format_cnpj}"
+                    app:validateRegex='@{@string/validate_cnpj}'
+                    app:validateRegexMessage="@{@string/error_invalid_cnpj_format}"
+                    app:onBlur="@{(v, hasFocus) -> vm.validator.validate(v)}"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/d10">
+
+                <android.support.design.widget.TextInputEditText
+                    android:text="@={Converter.fromRG(vm.principal.rg)}"
+                    android:hint="@{@string/c_principal_rg}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:digits="0123456789.-"
+                    android:maxLength="17"
+                    app:mask="@{@string/format_rg}"
+                    app:validateType='@{"rg"}'
+                    app:onBlur="@{(v, hasFocus) -> vm.validator.validate(v)}"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/d10">
+
+                <android.support.design.widget.TextInputEditText
+                    android:text="@={Converter.fromPhone(vm.principal.celular)}"
+                    android:hint="@{@string/c_principal_celular}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:digits="0123456789() -"
+                    android:maxLength="15"
+                    app:mask="@{@string/format_phone}"
+                    app:validateRegex='@{@string/validate_phone}'
+                    app:validateRegexMessage="@{@string/error_invalid_phone_format}"
+                    app:onBlur="@{(v, hasFocus) -> vm.validator.validate(v)}"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:onClick="@{(v) -> vm.save()}"
+                android:text="@string/app_submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                style="@style/Widget.AppCompat.Button.Colored"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+</layout>

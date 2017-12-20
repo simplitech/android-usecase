@@ -11,7 +11,9 @@ class UserResp : BaseObservable(), Serializable {
     @Bindable
     var user: User? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.user)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.user)
+            }
         }
 }

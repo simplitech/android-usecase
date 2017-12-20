@@ -1,0 +1,18 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="item"
+            type="br.com.martinlabs.usecase.model.GrupoDoPrincipal" />
+    </data>
+
+    <TextView
+        android:text="@{item.titulo}"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/d10"
+        android:paddingBottom="@dimen/d10"
+        android:textSize="@dimen/s18large"
+        android:textColor="@android:color/black"/>
+</layout>

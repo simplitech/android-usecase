@@ -14,11 +14,16 @@ android {
         versionName "1.0"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         debug {
-            buildConfigField "String", "SERVER_URL", '"http://192.168.1.6:8080/GeneratorUseCase/api/"'
-//            buildConfigField "String", "SERVER_URL", '"http://beta.martinlabs.com.br:8080/GeneratorUseCase/api/"'
+            buildConfigField "String", "SERVER_URL", '"http://192.168.30.194:8080/GeneratorUseCase/api/"'
+        }
+
+        debugBeta {
+            initWith debug
+            buildConfigField "String", "SERVER_URL", '"http://beta.martinlabs.com.br:8080/GeneratorUseCase/api/"'
         }
 
         release {
@@ -42,14 +47,15 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support:design:26.1.0'
+    compile 'com.android.support:cardview-v7:26.1.0'
     testImplementation 'junit:junit:4.12'
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
     kapt "com.android.databinding:compiler:3.0.0-alpha3"
-    compile 'com.android.support:design:26.1.0'
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     compile group: 'org.jetbrains.kotlinx', name: 'kotlinx-coroutines-core', version: '0.20-alpha-9'
@@ -57,6 +63,9 @@ dependencies {
     compile 'com.github.johnpersano:supertoasts:2.0'
     compile 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:2.2.0'
     compile 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:2.2.0'
+    compile 'ru.gildor.coroutines:kotlin-coroutines-retrofit:0.8.2'
+    compile group: 'org.jetbrains.kotlinx', name: 'kotlinx-coroutines-android', version: '0.20'
+    compile 'com.github.Ilhasoft:data-binding-validator:1.0.0'
     compile project(path: ':simpli-model')
     compile project(path: ':simpli-tools')
 }

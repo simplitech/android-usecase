@@ -16,5 +16,6 @@ class ListPrincipalAct : BaseAct() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.list_principal);
         binding?.vm = ListPrincipalVM()
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 }

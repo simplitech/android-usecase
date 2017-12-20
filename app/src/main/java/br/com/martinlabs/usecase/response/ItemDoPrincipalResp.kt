@@ -12,14 +12,18 @@ class ItemDoPrincipalResp : BaseObservable(), Serializable {
     @Bindable
     var itemDoPrincipal: ItemDoPrincipal? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.itemDoPrincipal)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.itemDoPrincipal)
+            }
         }
 
     @Bindable
     var allPrincipal: MutableList<Principal>? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.allPrincipal)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.allPrincipal)
+            }
         }
 }

@@ -12,14 +12,18 @@ class TagResp : BaseObservable(), Serializable {
     @Bindable
     var tag: Tag? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.tag)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.tag)
+            }
         }
 
     @Bindable
     var allPrincipal: MutableList<Principal>? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.allPrincipal)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.allPrincipal)
+            }
         }
 }

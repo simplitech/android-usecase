@@ -11,7 +11,9 @@ class ConectadoResp : BaseObservable(), Serializable {
     @Bindable
     var conectado: Conectado? = null
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.conectado)
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.conectado)
+            }
         }
 }
