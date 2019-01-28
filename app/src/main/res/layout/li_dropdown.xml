@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/d10"
-            android:textSize="@dimen/s16big"/>
+            android:textSize="@dimen/s16regular"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/hairline"

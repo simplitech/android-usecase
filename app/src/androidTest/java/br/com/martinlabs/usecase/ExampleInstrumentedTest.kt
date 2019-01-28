@@ -2,6 +2,8 @@ package br.com.martinlabs.usecase
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
+import br.com.martinlabs.usecase.model.Tag
+import br.com.martinlabs.usecase.service.buildGson
 
 import org.junit.Test
 import org.junit.runner.RunWith

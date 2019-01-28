@@ -4,11 +4,10 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.view.Gravity
 import android.view.MenuItem
-import br.com.martinlabs.usecase.R
+import br.com.simpli.model.RespException
 import com.github.johnpersano.supertoasts.library.Style
-import com.github.johnpersano.supertoasts.library.utils.PaletteUtils
-import com.github.johnpersano.supertoasts.library.SuperActivityToast
 import com.github.johnpersano.supertoasts.library.SuperToast
+import com.github.johnpersano.supertoasts.library.utils.PaletteUtils
 import java.io.Serializable
 import kotlin.reflect.KClass
 
@@ -19,11 +18,16 @@ import kotlin.reflect.KClass
 open class BaseAct : AppCompatActivity() {
 
     init {
-        instance = this
+        i = this
     }
 
     companion object {
-        var instance: BaseAct? = null
+        lateinit var i: BaseAct
+    }
+
+    override fun onResume() {
+        super.onResume()
+        i = this
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -61,12 +65,28 @@ open class BaseAct : AppCompatActivity() {
         toast(getString(textResId), true)
     }
 
+    fun errorToast(e: RespException) {
+        e.message?.let { toast(it, false) }
+    }
+
     fun startActivity(destination: KClass<*>) {
         val i = Intent(this, destination.java)
         startActivity(i)
     }
 
     fun startActivity(destination: KClass<*>, extraName: String, extra: Serializable) {
+        val i = Intent(this, destination.java)
+        i.putExtra(extraName, extra)
+        startActivity(i)
+    }
+
+    fun startActivity(destination: KClass<*>, extraName: String, extra: Int) {
+        val i = Intent(this, destination.java)
+        i.putExtra(extraName, extra)
+        startActivity(i)
+    }
+
+    fun startActivity(destination: KClass<*>, extraName: String, extra: Boolean) {
         val i = Intent(this, destination.java)
         i.putExtra(extraName, extra)
         startActivity(i)

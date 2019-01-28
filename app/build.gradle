@@ -5,29 +5,40 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    buildToolsVersion "27.0.3"
     defaultConfig {
         applicationId "br.com.martinlabs.usecase"
-        minSdkVersion 16
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion 19
+        targetSdkVersion 25
+        versionCode 10000 // # ## ##
+        versionName "a1.0.0" // a - android
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
+
+    applicationVariants.all { variant ->
+        variant.resValue "string", "version_name", variant.versionName
+    }
+
     buildTypes {
         debug {
-            buildConfigField "String", "SERVER_URL", '"http://192.168.30.194:8080/GeneratorUseCase/api/"'
+            buildConfigField "String", "SERVER_URL", '"http:/' + getLocalIPv4()[0] + ':8080/usecase/api/"'
         }
 
         debugBeta {
-            initWith debug
-            buildConfigField "String", "SERVER_URL", '"http://beta.martinlabs.com.br:8080/GeneratorUseCase/api/"'
+            signingConfig signingConfigs.debug
+            buildConfigField "String", "SERVER_URL", '"http://beta.martinlabs.com.br:8080/usecase/api/"'
         }
 
         release {
-            buildConfigField "String", "SERVER_URL", '"https://GeneratorUseCase.com/api/"'
+            buildConfigField "String", "SERVER_URL", '"https://usecase.com/api/"'
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        releaseBeta {
+            buildConfigField "String", "SERVER_URL", '"https://beta.martinlabs.com.br:8080/usecase/api/"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -43,29 +54,71 @@ kotlin {
     }
 }
 
+def getLocalIPv4() {
+    def ip4s = []
+    NetworkInterface.getNetworkInterfaces()
+            .findAll { it.isUp() && !it.isLoopback() && !it.isVirtual() }
+            .each {
+        it.getInetAddresses()
+                .findAll { !it.isLoopbackAddress() && it instanceof Inet4Address }
+                .each { ip4s << it }
+    }
+    return ip4s
+}
+
 dependencies {
+
+//    COMMONS
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':simpli-model')
+    implementation project(path: ':simpli-tools')
+
+//    KOTLIN
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation group: 'org.jetbrains.kotlinx', name: 'kotlinx-coroutines-core', version: '0.20'
+    implementation group: 'org.jetbrains.kotlinx', name: 'kotlinx-coroutines-android', version: '0.20'
+
+//    APP SUPPORT
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:design:26.1.0'
-    compile 'com.android.support:cardview-v7:26.1.0'
+    implementation 'com.android.support:design:26.1.0'
+    implementation 'com.android.support:cardview-v7:26.1.0'
+
+//    PLAY SERVICES
+    implementation 'com.google.android.gms:play-services-maps:11.8.0'
+    implementation 'com.google.android.gms:play-services-location:11.8.0'
+    implementation 'com.google.android.gms:play-services-analytics:11.8.0'
+    implementation 'com.google.maps.android:android-maps-utils:0.4+'
+
+//    RETROFIT
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'ru.gildor.coroutines:kotlin-coroutines-retrofit:0.8.2'
+
+//    REACTIVEX
+    implementation "io.reactivex.rxjava2:rxkotlin:2.2.0"
+    implementation "io.reactivex.rxjava2:rxandroid:2.0.2"
+
+//    BINDING COLLECTION ADAPTER
+    implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:2.2.0'
+    implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:2.2.0'
+
+//    OTHER
+    implementation 'org.apmem.tools:layouts:1.10@aar' // flow layout
+    implementation 'com.github.johnpersano:supertoasts:2.0'
+    implementation 'com.github.rakshakhegde:LastPagerAdapter:1.2'
+    implementation 'com.github.Ilhasoft:data-binding-validator:1.0.0'
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'com.romandanylyk:pageindicatorview:1.0.0'
+    implementation 'io.paperdb:paperdb:2.6'
+    implementation 'io.nlopez.smartlocation:library:3.3.3'
+    implementation 'jp.wasabeef:glide-transformations:3.0.1'
+    implementation 'joda-time:joda-time:2.9.9'
+    implementation 'ru.egslava:MaskedEditText:1.0.5'
+
+//    TEST
     testImplementation 'junit:junit:4.12'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
-    kapt "com.android.databinding:compiler:3.0.0-alpha3"
-    compile 'com.squareup.retrofit2:retrofit:2.3.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
-    compile group: 'org.jetbrains.kotlinx', name: 'kotlinx-coroutines-core', version: '0.20-alpha-9'
-    compile 'io.paperdb:paperdb:2.6'
-    compile 'com.github.johnpersano:supertoasts:2.0'
-    compile 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:2.2.0'
-    compile 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:2.2.0'
-    compile 'ru.gildor.coroutines:kotlin-coroutines-retrofit:0.8.2'
-    compile group: 'org.jetbrains.kotlinx', name: 'kotlinx-coroutines-android', version: '0.20'
-    compile 'com.github.Ilhasoft:data-binding-validator:1.0.0'
-    compile project(path: ':simpli-model')
-    compile project(path: ':simpli-tools')
 }

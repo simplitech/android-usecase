@@ -4,6 +4,7 @@
     <data>
         <import type="br.com.martinlabs.usecase.viewtools.Converter"/>
         <import type="br.com.martinlabs.usecase.R"/>
+        <import type="br.com.martinlabs.usecase.model.GrupoDoPrincipal"/>
 
         <variable
             name="vm"
@@ -132,7 +133,7 @@
                 android:layout_marginBottom="@dimen/d10">
 
                 <android.support.design.widget.TextInputEditText
-                    android:text="@={Converter.fromCPF(vm.principal.cpf)}"
+                    android:text="@={vm.principal.cpf}"
                     android:hint="@{@string/c_principal_cpf}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -151,7 +152,7 @@
                 android:layout_marginBottom="@dimen/d10">
 
                 <android.support.design.widget.TextInputEditText
-                    android:text="@={Converter.fromCNPJ(vm.principal.cnpj)}"
+                    android:text="@={vm.principal.cnpj}"
                     android:hint="@{@string/c_principal_cnpj}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -171,7 +172,7 @@
                 android:layout_marginBottom="@dimen/d10">
 
                 <android.support.design.widget.TextInputEditText
-                    android:text="@={Converter.fromRG(vm.principal.rg)}"
+                    android:text="@={vm.principal.rg}"
                     android:hint="@{@string/c_principal_rg}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -190,12 +191,10 @@
                 android:layout_marginBottom="@dimen/d10">
 
                 <android.support.design.widget.TextInputEditText
-                    android:text="@={Converter.fromPhone(vm.principal.celular)}"
+                    android:text="@={vm.principal.celular}"
                     android:hint="@{@string/c_principal_celular}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:digits="0123456789() -"
                     android:maxLength="15"
                     app:mask="@{@string/format_phone}"
                     app:validateRegex='@{@string/validate_phone}'

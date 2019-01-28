@@ -1,15 +1,12 @@
 package br.com.martinlabs.usecase.viewmodel
 
-import android.databinding.BaseObservable
 import android.databinding.ObservableBoolean
-import android.util.Log
 import br.com.martinlabs.usecase.context.BaseAct
 import br.com.martinlabs.usecase.context.HomeAct
-import br.com.martinlabs.usecase.context.ListPrincipalAct
+import br.com.martinlabs.usecase.databinding.LoginBinding
 import br.com.martinlabs.usecase.model.LoginHolder
 import br.com.martinlabs.usecase.service.Api
-import br.com.martinlabs.usecase.viewtools.Watchable
-import com.simpli.model.RespException
+import br.com.simpli.model.RespException
 import io.paperdb.Paper
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
@@ -20,17 +17,17 @@ import ru.gildor.coroutines.retrofit.await
  * Created by gil on 15/11/17.
  */
 
-class LoginVM : Watchable() {
+class LoginVM {
 
-    var loginHolder = LoginHolder()
-    var loading = ObservableBoolean(false)
+    var binding: LoginBinding? = null
+    val loginHolder = LoginHolder()
+    val loading = ObservableBoolean(false)
 
-    init {
-        launch {
-            var token: String? = Paper.book().read("token")
-            if (token != null) {
-                BaseAct.instance?.startActivityClearTask(HomeAct::class)
-            }
+    constructor(binding: LoginBinding?) {
+        this.binding = binding
+        val token: String? = Paper.book().read("token")
+        if (token != null) {
+            BaseAct.i.startActivityClearTask(HomeAct::class)
         }
     }
 
@@ -40,10 +37,11 @@ class LoginVM : Watchable() {
         try {
             var resp = Api.resources.login(loginHolder.copyWithSha256OnPassword()).await()
             loading.set(false)
-            Paper.book().write("token", resp.token)
-            Paper.book().write("id", resp.id)
-            BaseAct.instance?.startActivityClearTask(HomeAct::class)
+            Paper.book().write("token", resp.token.get())
+            Paper.book().write("id", resp.id.get())
+            BaseAct.i.startActivityClearTask(HomeAct::class)
         } catch (e: RespException) {
+            BaseAct.i.errorToast(e)
             loading.set(false)
         }
     }

@@ -13,6 +13,6 @@
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/d10"
         android:paddingBottom="@dimen/d10"
-        android:textSize="@dimen/s18large"
+        android:textSize="@dimen/s18big"
         android:textColor="@android:color/black"/>
 </layout>

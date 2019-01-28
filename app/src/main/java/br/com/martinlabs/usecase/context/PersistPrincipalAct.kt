@@ -8,15 +8,11 @@ import br.com.martinlabs.usecase.viewmodel.PersistPrincipalVM
 
 class PersistPrincipalAct : BaseAct() {
 
-    var binding: PersistPrincipalBinding? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.persist_principal);
-        binding?.let {
-            it.vm = PersistPrincipalVM(it)
-        }
+        val binding: PersistPrincipalBinding = DataBindingUtil.setContentView(this, R.layout.persist_principal);
+        binding.vm = PersistPrincipalVM(binding)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 }

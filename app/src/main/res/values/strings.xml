@@ -3,8 +3,7 @@
 <!--region MAIN-->
 
     <string name="language">en-us</string>
-    <string name="version">a1.0.0</string>
-    <string name="unexpected_error">Unexpected Error</string>
+    <!--<string name="version_name">It's on build.gradle as it was a @string/version_name</string>-->
 
     <string name="app">GeneratorUseCase</string>
     <string name="app_loading">Loading…</string>
@@ -25,6 +24,7 @@
     <string name="app_totalLines">%s total lines</string>
     <string name="app_version">Version</string>
     <string name="app_submit">Submit</string>
+    <string name="app_currency">R$</string>
 
 <!--endregion-->
 
@@ -33,23 +33,39 @@
     <string name="dateformat_date">yyyy/MM/dd</string>
     <string name="dateformat_datetime">yyyy/MM/dd HH:mm</string>
     <string name="dateformat_time">HH:mm</string>
+    <string name="dateformat_time_h">HH'h'mm</string>
     <string name="dateformat_datemask">####/##/##</string>
     <string name="dateformat_datetimemask">####/##/## ##:##</string>
+    <string name="dateformat_m_y">MM/yyyy</string>
+
 
     <string name="format_cpf">###.###.###-##</string>
     <string name="format_cnpj">##.###.###/####-##</string>
     <string name="format_rg">##.###.###-#</string>
     <string name="format_cep">#####-###</string>
     <string name="format_phone">(##) #####-####</string>
+    <string name="format_money">R$ %.2f</string>
+    <string name="format_creditcard">•••• %s</string>
+    <string name="format_negative_money">- R$ %.2f</string>
+
 
 <!--endregion-->
 
 <!--region VALIDATION-->
     <string name="validate_cnpj">^$|\\d{2}\\.\\d{3}\\.\\d{3}\\/\\d{4}\\-\\d{2}</string>
     <string name="validate_phone">^$|\\(\\d{2}\\) \\d{5}\\-\\d{4}</string>
+<!--endregion-->
 
+<!--region ERROR-->
+    <string name="error_unexpected">Unexpected Error</string>
+    <string name="nao_foi_possivel_se_conectar_com_o_servidor">Não foi possível se conectar com o servidor. Tente novamente mais tarde</string>
+    <string name="falha_ao_se_conectar_ao_servidor_verifique_se_o_app_esta_atualizado">Falha ao se conectar ao servidor. Verifique se o aplicativo está atualizado</string>
+    <string name="erro_tentar_conectar_ao_servidor_verifique_se_o_app_esta_atualizado">Houve um erro ao tentar se conectar ao servidor. Verifique se o aplicativo está atualizado</string>
+    <string name="realize_login_para_prosseguir">Realize o login ou crie uma conta para prosseguir</string>
     <string name="error_invalid_cnpj_format">Invalid CNPJ format</string>
     <string name="error_invalid_phone_format">Invalid phone number format</string>
+    <string name="error_password">Senha precisa conter no minimo 8 caracteres e conter pelo menos 1 número e 1 letra.</string>
+    <string name="error_email">E-mail inválido</string>
 <!--endregion-->
 
 <!--region TYPES-->

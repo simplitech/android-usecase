@@ -9,13 +9,11 @@ import br.com.martinlabs.usecase.viewmodel.ListPrincipalVM
 
 class ListPrincipalAct : BaseAct() {
 
-    var binding: ListPrincipalBinding? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.list_principal);
-        binding?.vm = ListPrincipalVM()
+        val binding: ListPrincipalBinding = DataBindingUtil.setContentView(this, R.layout.list_principal);
+        binding.vm = ListPrincipalVM(binding)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 }

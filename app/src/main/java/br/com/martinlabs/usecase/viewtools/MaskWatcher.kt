@@ -7,6 +7,9 @@ import android.text.TextWatcher
  * Created by gil on 22/11/17.
  */
 
+/**
+ * CAUTION: DO NOT USE WITH A CONVERTER !!!
+ */
 class MaskWatcher(private val mask: String) : TextWatcher {
     private var isRunning = false
     private var isDeleting = false

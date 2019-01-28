@@ -11,12 +11,10 @@ import br.com.martinlabs.usecase.viewmodel.LoginVM
  */
 class LoginAct : BaseAct() {
 
-    var binding: LoginBinding? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.login);
-        binding?.vm = LoginVM()
+        val binding: LoginBinding? = DataBindingUtil.setContentView(this, R.layout.login);
+        binding?.vm = LoginVM(binding)
     }
 }

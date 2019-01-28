@@ -1,14 +1,15 @@
 package br.com.martinlabs.usecase.viewtools
 
+import android.content.res.Resources
 import android.databinding.InverseMethod
+import android.databinding.ObservableArrayList
+import android.databinding.ObservableField
 import android.databinding.ObservableList
-
-import java.text.ParseException
-import java.text.SimpleDateFormat
-import java.util.Date
-
 import br.com.martinlabs.usecase.model.GrupoDoPrincipal
 import br.com.martinlabs.usecase.model.WithIdAndTitle
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Created by gil on 17/12/17.
@@ -42,6 +43,21 @@ object Converter {
     @InverseMethod("fromDoubleNotNull")
     fun toDoubleNotNull(value: String?): Double {
         return if (value == null || value.isEmpty()) 0.0 else java.lang.Double.parseDouble(value)
+    }
+
+// endregion
+
+// region FLOAT
+
+    @JvmStatic
+    fun fromFloat(value: Float?): String? {
+        return value?.toString()
+    }
+
+    @JvmStatic
+    @InverseMethod("fromFloat")
+    fun toFloat(value: String?): Float? {
+        return if (value == null || value.isEmpty()) null else java.lang.Float.parseFloat(value)
     }
 
 // endregion
@@ -103,15 +119,13 @@ object Converter {
 
     }
 
-    @JvmStatic
-    fun isValidDateChange(oldValue: Date?, newValue: Date?): Boolean {
-        return newValue == null || newValue != INVALID_DATE && newValue != oldValue
-    }
-
 // endregion
 
 // region CPF
 
+    /**
+     * CAUTION: DO NOT USE WITH THE MaskWatcher !!!
+     */
     @JvmStatic
     fun fromCPF(value: String?): String? {
         if (value == null) return null
@@ -134,6 +148,9 @@ object Converter {
 
 // region CNPJ
 
+    /**
+     * CAUTION: DO NOT USE WITH THE MaskWatcher !!!
+     */
     @JvmStatic
     fun fromCNPJ(value: String?): String? {
         if (value == null) return null
@@ -156,6 +173,9 @@ object Converter {
 
 // region RG
 
+    /**
+     * CAUTION: DO NOT USE WITH THE MaskWatcher !!!
+     */
     @JvmStatic
     fun fromRG(value: String?): String? {
         if (value == null) return null
@@ -178,12 +198,15 @@ object Converter {
 
 // region PHONE
 
+    /**
+     * CAUTION: DO NOT USE WITH THE MaskWatcher !!!
+     */
     @JvmStatic
     fun fromPhone(value: String?): String? {
         if (value == null) return null
 
         var v = value.replace("\\D".toRegex(), "")
-        v = v.replace("(\\d{2})(\\d{5})(\\d{4})$".toRegex(), "($1) $2-$3")
+        v = v.replace("(\\d{2})(\\d)(\\d{4})(\\d{4})$".toRegex(), "($1) $2 $3-$4")
         return v
     }
 
@@ -192,7 +215,7 @@ object Converter {
     fun toPhone(value: String?): String? {
         if (value == null || value.length == 0) return null
 
-        var v = value.replace("[. ,:\\-/]+".toRegex(), "")
+        var v = value.replace("[. ,:\\-/()]+".toRegex(), "")
         return v
     }
 
@@ -200,6 +223,9 @@ object Converter {
 
 // region CEP
 
+    /**
+     * CAUTION: DO NOT USE WITH THE MaskWatcher !!!
+     */
     @JvmStatic
     fun fromCEP(value: String?): String? {
         if (value == null) return null
@@ -223,7 +249,7 @@ object Converter {
 // region INDEX FROM MODEL
 
     @JvmStatic
-    fun <T : WithIdAndTitle> indexFromModel(list: ObservableList<T>?, model: T?): Int? {
+    fun <T : WithIdAndTitle> indexFromModel(list: ObservableArrayList<T>?, model: T?): Int? {
         if (list != null && model != null) {
             for (i in list.indices) {
                 val it = list[i]
@@ -238,8 +264,27 @@ object Converter {
 
     @JvmStatic
     @InverseMethod("indexFromModel")
-    fun <T : WithIdAndTitle> indexToModel(list: ObservableList<T>?, index: Int?): T? {
+    fun <T : WithIdAndTitle> indexToModel(list: ObservableArrayList<T>?, index: Int?): T? {
         return if (list != null && index != null) list[index] else null
+    }
+
+// endregion
+
+// region DP AND PIXEL
+
+    @JvmStatic
+    fun fromPixelsToDp(px: Float): Float {
+        val metrics = Resources.getSystem().getDisplayMetrics()
+        val dp = px / (metrics.densityDpi / 160f)
+        return Math.round(dp).toFloat()
+    }
+
+    @JvmStatic
+    @InverseMethod("fromPixelsToDp")
+    fun fromDpToPixel(dp: Float): Float {
+        val metrics = Resources.getSystem().getDisplayMetrics()
+        val px = dp * (metrics.densityDpi / 160f)
+        return Math.round(px).toFloat()
     }
 
 // endregion

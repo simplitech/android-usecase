@@ -19,27 +19,29 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <!--<android.support.v4.widget.SwipeRefreshLayout-->
-            <!--android:id="@+id/swipeRefreshLayout"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:visibility="@{vm.items.size() > 0 ? View.VISIBLE : View.GONE}">-->
-
-            <android.support.v7.widget.RecyclerView
+            <android.support.v4.widget.SwipeRefreshLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layoutManager="@{LayoutManagers.linear()}"
-                app:items="@{vm.listPrincipal}"
-                app:itemBinding="@{vm.itemPrincipalBinding}"/>
+                app:refreshing="@{vm.loading}"
+                app:onRefreshListener="@{() -> vm.load()}"
+                visible="@{vm.listPrincipal.size() > 0}">
 
-            <!--</android.support.v4.widget.SwipeRefreshLayout>-->
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layoutManager="@{LayoutManagers.linear()}"
+                    app:items="@{vm.listPrincipal}"
+                    app:itemBinding="@{vm.itemPrincipalBinding}"/>
 
-            <!--<TextView-->
-            <!--android:visibility="@{vm.items.size() == 0 ? View.VISIBLE : View.GONE}"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:gravity="center"-->
-            <!--android:text="@string/app_noDataToShow"/>-->
+            </android.support.v4.widget.SwipeRefreshLayout>
+
+            <TextView
+                visible="@{vm.listPrincipal.size() == 0}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/app_noDataToShow"/>
 
         </LinearLayout>
 

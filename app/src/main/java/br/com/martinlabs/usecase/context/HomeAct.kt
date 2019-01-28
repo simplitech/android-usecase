@@ -18,7 +18,7 @@ class HomeAct : BaseAct(), NavigationView.OnNavigationItemSelectedListener {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.home);
-        binding?.vm = HomeVM()
+        binding?.vm = HomeVM(binding)
 
         initDrawer()
     }
